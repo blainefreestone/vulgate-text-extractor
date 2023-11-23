@@ -15,5 +15,7 @@ res.raise_for_status()
 vulgate_soup = bs4.BeautifulSoup(res.text, 'html.parser')
 
 verses = vulgate_soup.select('.Latin')
-for verse in verses:
-    print(verse.getText())
+verses_text = [f"{verse.getText()}\n" for verse in verses]
+
+with open(f"C:\\Users\\Blaine Freestone\\Desktop\\Vulgate Verses\\{book_name}-{chapter}.txt", 'w') as file:
+    file.writelines(verses_text)
